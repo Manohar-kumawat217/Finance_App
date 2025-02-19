@@ -1,6 +1,7 @@
 import express from "express";
 import { registerUser, loginUser } from "../controllers/user.controller.js";
 import { body } from "express-validator";
+import protectRoute from "../middlewares/user.middleware.js";
 // create router
 const router = express.Router();
 
@@ -28,5 +29,9 @@ router.post(
   ],
   loginUser
 );
+
+router.get("/dashboard", protectRoute, (req, res) => {
+  res.json({ message: "welcome to dashboard", user: req.user });
+});
 
 export default router;
