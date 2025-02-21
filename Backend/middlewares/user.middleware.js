@@ -18,7 +18,7 @@ const protectRoute = async (req, res, next) => {
   try {
     // verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
+    console.log(decoded);
     // attach user to request
     req.user = decoded;
     // proceed to next middleware
